@@ -1,0 +1,25 @@
+{
+  "name": "e-commerce-backend-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lan714/E-Commerce-BackEnd-HW.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lan714/E-Commerce-BackEnd-HW/issues"
+  },
+  "homepage": "https://github.com/Lan714/E-Commerce-BackEnd-HW#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
+  }
+}
