@@ -5,24 +5,79 @@ const { Category, Product } = require('../models')
 
 router.get('/categories', (req, res) => {
   // find all categories
-  // be sure to include its associated Products
+  Cateogory.findAll(({
+
+    include: {
+      model: Product,
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+    }
+  })
+  .then(categoriesData => {
+    if (!categoriesData) {
+      res.status(404).json({message: "No categories found"})
+      return
+    }
+    res.json(categoriesData)
+  })
+  catch(err => console.log(err))
 })
+ 
 
 router.get('/categories/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  Cateogory.findOne({
+    where: { id: req.params.id },
+    
+    include: {
+      model: Product,
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+    }
+  })
+    .then(categoryData => {
+      if (!categoryData) {
+        res.status(404).json({ message: "No category with this id found" })
+        return
+      }
+      res.json(categoryData)
+    })
+  catch (err => console.log(err))
+ 
 })
 
 router.post('/categories', (req, res) => {
-  // create a new category
+  Cateogory.create({
+    category_name: req.body.category_name
+  })
+  .then(categoryData => res.json(categoryData))
+  catch (err => console.log(err))
 })
 
 router.put('/categories/:id', (req, res) => {
-  // update a category by its `id` value
+  Cateogory.update({
+    where: { id: req.params.id },
+  })
+    .then(categoryData => {
+      if (!categoryData) {
+        res.status(404).json({ message: "No category with this id found to update" })
+        return
+      }
+      res.json(categoryData)
+    })
+  catch (err => console.log(err))
+ 
 })
 
 router.delete('/categories/:id', (req, res) => {
-  // delete a category by its `id` value
+  Cateogory.destroy({
+    where: { id: req.params.id },
+  })
+    .then(categoryData => {
+      if (!categoryData) {
+        res.status(404).json({ message: "No category with this id found to delete" })
+        return
+      }
+      res.json(categoryData)
+    })
+  catch (err => console.log(err))
 })
 
 module.exports = router
