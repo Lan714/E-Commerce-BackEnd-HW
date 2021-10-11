@@ -5,7 +5,7 @@ const { Category, Product } = require('../models')
 
 router.get('/categories', (req, res) => {
   // find all categories
-  Cateogory.findAll(({
+  Cateogory.findAll({
 
     include: {
       model: Product,
@@ -19,7 +19,7 @@ router.get('/categories', (req, res) => {
     }
     res.json(categoriesData)
   })
-  catch(err => console.log(err))
+  .catch(err => console.log(err))
 })
  
 
@@ -39,7 +39,7 @@ router.get('/categories/:id', (req, res) => {
       }
       res.json(categoryData)
     })
-  catch (err => console.log(err))
+  .catch(err => console.log(err))
  
 })
 
@@ -48,7 +48,7 @@ router.post('/categories', (req, res) => {
     category_name: req.body.category_name
   })
   .then(categoryData => res.json(categoryData))
-  catch (err => console.log(err))
+  .catch(err => console.log(err))
 })
 
 router.put('/categories/:id', (req, res) => {
@@ -62,7 +62,7 @@ router.put('/categories/:id', (req, res) => {
       }
       res.json(categoryData)
     })
-  catch (err => console.log(err))
+  .catch(err => console.log(err))
  
 })
 
@@ -77,7 +77,7 @@ router.delete('/categories/:id', (req, res) => {
       }
       res.json(categoryData)
     })
-  catch (err => console.log(err))
+  .catch(err => console.log(err))
 })
 
 module.exports = router
